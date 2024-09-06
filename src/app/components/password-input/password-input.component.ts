@@ -18,10 +18,10 @@ enum PASSWORD_STRANGTH {
 })
 export class PasswordInputComponent {
   public password: string = '';
-  public strength: string = '';
+  public strength: PASSWORD_STRANGTH | null = null;
   public isLessThenMinLenghth = false;
 
-  public checkPasswordStrength(password: string): string {
+  public checkPasswordStrength(password: string): PASSWORD_STRANGTH {
     const hasLetters = /[a-zA-Z]/.test(password);
     const hasDigits = /\d/.test(password);
     const hasSymbols = /[\W_]/.test(password);
@@ -34,9 +34,9 @@ export class PasswordInputComponent {
       (hasDigits && hasSymbols)
     ) {
       return PASSWORD_STRANGTH.MEDIUM;
-    } else {
-      return PASSWORD_STRANGTH.EASY;
     }
+
+    return PASSWORD_STRANGTH.EASY;
   }
 
   public onPasswordInput(): void {
