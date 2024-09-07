@@ -22,9 +22,9 @@ export class PasswordInputComponent {
   public isLessThenMinLenghth = false;
 
   public checkPasswordStrength(password: string): PASSWORD_STRANGTH {
-    const hasLetters = /[a-zA-Z]/.test(password);
+    const hasLetters = /[\p{L}]/u.test(password);
     const hasDigits = /\d/.test(password);
-    const hasSymbols = /[\W_]/.test(password);
+    const hasSymbols = /[\p{P}\p{S}]/u.test(password);
 
     if (hasLetters && hasDigits && hasSymbols) {
       return PASSWORD_STRANGTH.STRONG;
